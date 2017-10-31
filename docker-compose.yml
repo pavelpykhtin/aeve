@@ -1,0 +1,25 @@
+version: '2.0'
+services:
+  aeve:
+    depends_on:
+      - mongo
+    image: aeve
+    ports: 
+      - 9000:9000
+    volumes:
+      - /etc/aeve/hosting.json:/app/hosting.json
+      - /etc/aeve/appsettings.json:/app/appsettings.json
+    links:
+      - mongo
+  aldrus:
+    ports:
+      - 9001:9000
+    volumes:
+      - /etc/aldrus/hosting.json:/app/hosting.json
+      - /etc/aldrus/appsettings.json:/app/appsettings.json    
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - /var/aeve/data:/data/db

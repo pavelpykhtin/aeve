@@ -1,0 +1,16 @@
+FROM microsoft/aspnetcore-build:2.0 AS build-env
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+COPY ./ ./
+RUN dotnet restore ./MoviesBrowser.sln
+
+# Build and publish
+RUN dotnet build -c Release
+RUN dotnet publish ./Source/Aldrus.Application/Aldrus.Application.csproj -c Release -o ../../out/aldrus
+
+# Build runtime image
+FROM microsoft/aspnetcore:2.0
+WORKDIR /app
+COPY --from=build-env /app/out/aldrus .
+ENTRYPOINT ["dotnet", "Aldrus.Application.dll"]

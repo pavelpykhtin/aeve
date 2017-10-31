@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Elbum.Application": {
+      "commandName": "Project",
+      "commandLineArgs": "--aeve http://localhost:9002"
+    },
+    "Elbum.Application_remote": {
+      "commandName": "Project",
+      "commandLineArgs": "--aeve http://docker-test-107h8q8b.cloudapp.net:50001 --proxy http://localhost:3128"
+    }
+  }
+}
