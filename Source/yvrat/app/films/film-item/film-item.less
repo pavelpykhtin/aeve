@@ -1,0 +1,63 @@
+.film-item{
+    display: flex;
+    align-items: stretch;
+
+    & > * + *{
+        padding: 8px;
+    }
+
+    &__image{
+        flex-grow: 0;
+        flex-shrink: 0;
+
+        width: 50px;
+        height: 75px;
+    } 
+
+    &__handler{
+        width: 0;
+        height: 0;
+        position: absolute;
+        display: block;
+    }
+
+    &__info{
+        flex-grow: 1;
+        & > * + *{
+            margin-top: 8px;
+        }
+    }
+
+    &__description{
+        display: none;
+        font-size: 12px;
+    }
+
+    &__expander{
+        flex-grow: 0;
+        background-color: #9B9B00;
+        border-radius: 4px;
+        padding: 3px;
+        color: #fff;
+        &:before{
+            content: 'Показать подробнее'
+        } 
+    }
+
+    &_selected{
+        background-color: #eee;
+    }
+
+    &_expanded{
+        .film-item__description{
+            display: block;
+        }
+
+        .film-item__expander{
+            &:before{
+                content: 'Свернуть'
+            } 
+        }
+    
+    }
+}

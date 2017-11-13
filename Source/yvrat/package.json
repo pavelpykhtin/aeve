@@ -1,0 +1,39 @@
+{
+    "name": "tvproxy",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "server": "node server.js",
+        "build": "webpack",
+        "watch": "webpack -w"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "babel": "^6.23.0",
+        "babel-core": "^6.26.0",
+        "babel-es6-polyfill": "^1.1.0",
+        "babel-loader": "^7.1.2",
+        "babel-preset-env": "^1.6.0",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-react": "^6.24.1",
+        "css-loader": "^0.28.7",
+        "less": "^2.7.2",
+        "less-loader": "^4.0.5",
+        "react": "^15.6.1",
+        "react-dom": "^15.6.1",
+        "react-loader": "^2.4.2",
+        "react-redux": "^5.0.6",
+        "redux-thunk": "^2.2.0",
+        "redux-logger": "^3.0.6",
+        "react-toolbox": "^2.0.0-beta.12",
+        "redux": "^3.7.2",
+        "style-loader": "^0.18.2",
+        "webpack": "^3.6.0",
+        "axios": "^0.16.2"
+    },
+    "dependencies": {
+        "express": "^4.15.4"
+    }
+}
