@@ -1,7 +1,7 @@
 import axios from 'axios';
-import fuckCors from './fuckCors';
 
 const aldrusBaseAddress = 'http://docker-test-107h8q8b.cloudapp.net:9001/api';
+const proxyBase = 'http://192.168.1.38:3001';
 const PageSize = 60;
 
 const actions = {
@@ -35,9 +35,9 @@ function watchMovie(id) {
         const movie = getState().films.storage.itemsById[id];
         console.log(movie);
         dispatch({type: actions.MOVIES_WATCH, id})
-        fuckCors
-            .get(`https://zona.mobi/ajax/video/${movie.externalId}`)
-            .then(data => dispatch(watchMovieSuccess(data)));
+        axios
+            .get(`${proxyBase}/api/video/${movie.externalId}`, {crossDomain: true})
+            .then(response => dispatch(watchMovieSuccess(response.data.url)));
     }
 }
 

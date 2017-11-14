@@ -4,3 +4,4 @@ azure/*
 **/obj/*
 **/bin/*
 Source/yvrat/node_modules/
+Source/yvrat/dist/
