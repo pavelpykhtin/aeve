@@ -15,6 +15,7 @@ export default connect(
         onClick: id => dispatch(actionCreators.watchMovie(id)),
         onSelect: id => dispatch(actionCreators.moviesListSelect(id)),
         onScroll: () => dispatch(actionCreators.moviesListLoadPage()),
-        onToggleDescription: (id, expand) => dispatch(actionCreators.moviesListToggleDescription(id, expand))
+        onToggleDescription: (id, expand) => dispatch(actionCreators.moviesListToggleDescription(id, expand)),
+        onMarkStarred: id => dispatch(actionCreators.moviesListMarkStarred(id))
     })
 )(ItemsList);

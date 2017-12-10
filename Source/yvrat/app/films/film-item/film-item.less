@@ -1,3 +1,9 @@
+.inner-spacing(@spacing){
+    & > * + *{
+        margin-left: @spacing;
+    }
+}
+
 .film-item{
     display: flex;
     align-items: stretch;
@@ -37,11 +43,29 @@
         flex-grow: 0;
         background-color: #9B9B00;
         border-radius: 4px;
-        padding: 3px;
+        padding: 4px;
         color: #fff;
         &:before{
             content: 'Показать подробнее'
         } 
+    }
+
+    &__starred{
+        flex-grow: 0;
+        background-color: #02c12b;
+        border-radius: 4px;
+        padding: 3px;
+        color: #fff;
+        &:before{
+            content: '\2605'
+        } 
+    }
+
+    &__actions{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        .inner-spacing(8px);
     }
 
     &_selected{

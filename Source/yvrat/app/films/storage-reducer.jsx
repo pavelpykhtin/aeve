@@ -19,12 +19,12 @@ function onDetailsLoadSuccess(state, action){
 export default function StorageReducer(state = initialState, action){
     switch(action.type){
         case actions.MOVIES_FETCH_SUCCESS:
+            const fetchedItems = action.films.filter(x => !x.isWatched);
             const newItems = state.items
-                .filter(x => !action.films.some(f => f.id == x.id))
-                .concat(action.films);
-            const fetchedMovies = action.films;
-
-            const newItemsById = action.films.reduce((s, f) => (s[f.id] = f, s), {});
+                .filter(x => !fetchedItems.some(f => f.id == x.id))
+                .concat(fetchedItems);
+            
+            const newItemsById = fetchedItems.reduce((s, f) => (s[f.id] = f, s), {});
 
             return {
                 items: newItems, 

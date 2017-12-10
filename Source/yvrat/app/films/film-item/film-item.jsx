@@ -23,6 +23,7 @@ class FilmItem extends React.Component{
                         <div className='film-item__description'>{props.description}</div>
                     </div>
                     <div className='film-item__actions'>
+                        <div className='film-item__starred' onClick={this.markStarred(props)}></div>
                         <div className='film-item__expander' onClick={this.expand(props)}></div>
                     </div>
                 </div>;
@@ -49,6 +50,8 @@ class FilmItem extends React.Component{
                 case 49:
                     props.onToggleDescription(props.id, !props.isExpanded);
                     break;
+                case 50:
+                    props.onMarkWatched(props.id);
             }
         };
     }
@@ -57,6 +60,13 @@ class FilmItem extends React.Component{
         return e => {
             e.stopPropagation();
             props.onToggleDescription(props.id, !props.isExpanded);        
+        }
+    }
+
+    markStarred(props){
+        return e => {
+            e.stopPropagation();
+            props.onMarkStarred(props.id);        
         }
     }
 }

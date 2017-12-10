@@ -15,7 +15,8 @@ class ItemsList extends React.Component {
                 isSelected: p.id == props.selectedId || (i == 0 && !props.selectedId),
                 onClick: props.onClick,
                 onSelect: props.onSelect,
-                onToggleDescription: props.onToggleDescription
+                onToggleDescription: props.onToggleDescription,
+                onMarkStarred: props.onMarkStarred,
             }))
             .map(p => <Item {...p} key={p.id}/>);
 

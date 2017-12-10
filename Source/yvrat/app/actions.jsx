@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const aldrusBaseAddress = 'http://docker-test-107h8q8b.cloudapp.net:9001/api';
-const proxyBase = 'http://192.168.1.38:3001';
+const proxyBase = 'http://192.168.1.38:9003';
 const PageSize = 60;
 
 const actions = {
@@ -14,7 +14,9 @@ const actions = {
     MOVIES_LIST_LOAD_PAGE: 'MOVIES_LIST_LOAD_PAGE',
     MOVIES_LIST_LOAD_PAGE_SUCCESS: 'MOVIES_LIST_LOAD_PAGE_SUCCESS',
     MOVIES_LIST_TOGGLE_DESCRIPTION: 'MOVIES_LIST_TOGGLE_DESCRIPTION',
-    MOVIES_LIST_SET_EXPANDED: 'MOVIES_LIST_SET_EXPANDED'
+    MOVIES_LIST_SET_EXPANDED: 'MOVIES_LIST_SET_EXPANDED',
+    MOVIES_LIST_MARK_STARRED: 'MOVIES_LIST_MARK_STARRED',
+    MOVIES_LIST_MARK_STARRED_SUCCESS: 'MOVIES_LIST_MARK_STARRED_SUCCESS'
 };
 
 function fetchMovies(page) {
@@ -36,8 +38,8 @@ function watchMovie(id) {
         console.log(movie);
         dispatch({type: actions.MOVIES_WATCH, id})
         axios
-            .get(`${proxyBase}/api/video/${movie.externalId}`, {crossDomain: true})
-            .then(response => dispatch(watchMovieSuccess(response.data.url)));
+            .get(`${proxyBase}/api/content/${movie.externalId}`, {crossDomain: true})
+            .then(response => dispatch(watchMovieSuccess(response.data)));
     }
 }
 
@@ -103,6 +105,16 @@ function moviesDetailsLoadSuccess(details){
 function moviesListSetExpanded(id, isExpanded){
     return dispatch => dispatch({type: actions.MOVIES_LIST_SET_EXPANDED, isExpanded, id});
 }
+
+function moviesListMarkStarred(id){
+    return dispatch => {
+        console.log(id);
+        dispatch({type: actions.MOVIES_LIST_MARK_STARRED, id});
+
+        axios.post(`movies/watched`, {id})
+            .then(response => dispatch({type: actions.MOVIES_LIST_MARK_STARRED_SUCCESS, id}));
+    };
+}
     
 const actionCreators = {
     fetchMovies,
@@ -114,7 +126,8 @@ const actionCreators = {
     moviesListLoadPage,
     moviesListLoadPageSuccess,
     moviesListToggleDescription,
-    moviesListSetExpanded
+    moviesListSetExpanded,
+    moviesListMarkStarred
 };
 
 export {actions, actionCreators};
