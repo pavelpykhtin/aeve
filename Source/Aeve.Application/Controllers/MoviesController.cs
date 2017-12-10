@@ -59,7 +59,7 @@ namespace Aeve.Application.Controllers
         {
             var movie = await movieRepository.GetAsync(request.Id);
 
-            movie.IsPostponed = true;
+            movie.IsWatched = true;
 
             await movieRepository.UpdateAsync(movie);
         }
