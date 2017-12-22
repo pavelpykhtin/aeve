@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const aldrusBaseAddress = 'http://docker-test-107h8q8b.cloudapp.net:9001/api';
+const aldrusBaseAddress = `${appoptions.aldrusUri}/api`;
 const proxyBase = 'http://192.168.1.38:9003';
 const PageSize = 60;
 

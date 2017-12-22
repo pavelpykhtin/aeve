@@ -1,0 +1,22 @@
+FROM node:carbon AS build-env
+WORKDIR /app
+
+# Copy source files and restore as distinct layers
+COPY ./Source/yvrat/ ./
+RUN npm install
+
+# Build
+RUN npm run build
+
+# Build runtime image
+FROM node:carbon
+WORKDIR /app
+COPY --from=build-env ./app/package.json ./
+COPY --from=build-env ./app/server.js ./
+COPY --from=build-env ./app/index.html ./
+COPY --from=build-env ./app/options.js ./
+COPY --from=build-env ./app/dist ./dist
+RUN npm install --production
+
+EXPOSE 9000
+ENTRYPOINT ["node", "server.js"]

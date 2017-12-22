@@ -17,6 +17,13 @@ services:
     volumes:
       - /etc/aldrus/hosting.json:/app/hosting.json
       - /etc/aldrus/appsettings.json:/app/appsettings.json    
+  yvrat:
+    ports:
+      - 9002:9000
+    volumes:
+      - /etc/yvrat/options.js:/app/options.js
+    links:
+      - aldrus
   mongo:
     image: mongo
     ports:

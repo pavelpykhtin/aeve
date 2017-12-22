@@ -5,5 +5,3 @@ azure/*
 **/bin/*
 Source/yvrat/node_modules/
 Source/yvrat/dist/
-.vs/MoviesBrowser/v15/sqlite3/storage.ide
-.vs/MoviesBrowser/v15/.suo
